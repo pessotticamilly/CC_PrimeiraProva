@@ -1,0 +1,27 @@
+{
+  "name": "atividade_avaliativa_biblioteca_camilly_de_souza_pessotti",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pessotticamilly/atividade_avaliativa_biblioteca_camilly_de_souza_pessotti.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pessotticamilly/atividade_avaliativa_biblioteca_camilly_de_souza_pessotti/issues"
+  },
+  "homepage": "https://github.com/pessotticamilly/atividade_avaliativa_biblioteca_camilly_de_souza_pessotti#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "firebase": "^9.8.4",
+    "firebase-admin": "^11.0.0",
+    "node": "^18.4.0",
+    "nodemon": "^2.0.18"
+  }
+}
