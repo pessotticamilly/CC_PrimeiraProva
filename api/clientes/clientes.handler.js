@@ -1,5 +1,6 @@
 const crud = require("../../crud/index");
 
+
 async function pesquisarClientes() {
     return await crud.pegar("clientes");
 }

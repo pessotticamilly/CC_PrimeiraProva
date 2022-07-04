@@ -70,4 +70,5 @@ async function remover(tableName, id) {
   };
 }
 
+
 module.exports = { adicionarEEditar, pegar, pegarPeloId, remover };
