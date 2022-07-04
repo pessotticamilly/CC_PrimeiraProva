@@ -1,5 +1,0 @@
-Express: npm i express --save
-Nodemon: npm i Nodemon
-Firebase: npm i firebase
-          npm i firebase-admin
-Jest: npm i jest
