@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-// const usuarios = require("./api/usuarios/usuarios.controler");
+const clientes = require("./api/clientes/clientes.controller");
 
-// router.use("/usuarios", usuarios);
+router.use("/clientes", clientes);
 
 module.exports = router;
