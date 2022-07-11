@@ -18,7 +18,7 @@ async function editarAutor(dados, id) {
 };
 
 async function removerAutor(id) {
-    return await crud.remover("clientes", id);
+    return await crud.remover("autores", id);
 };
 
 module.exports = {
