@@ -1,6 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, collection, doc, setDoc, addDoc, query, where, getDocs, getDoc, deleteDoc,
-} = require("firebase/firestore/lite");
+const { getFirestore, collection, doc, setDoc, addDoc, query, where, getDocs, getDoc, deleteDoc } = require("firebase/firestore/lite");
 
 const firebaseConfig = {
   apiKey: "AIzaSyAZ232DfY7bR1bz9gU7h0XFD9A9du8F7jM",
@@ -13,28 +12,28 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore();
+const bd = getFirestore();
 
-async function adicionarEEditar(tableName, id, data) {
+async function adicionarOuEditar(nomeTabela, id, dados) {
   if (id) {
-    const referenceEntity = await setDoc(doc(db, tableName, id), data);
+    const referenceEntity = await setDoc(doc(bd, nomeTabela, id), dados);
     const savedData = {
-      ...data,
+      ...dados,
       id: id,
     };
     return savedData;
   } else {
-    const referenceEntity = await addDoc(collection(db, tableName), data);
+    const referenceEntity = await addDoc(collection(bd, nomeTabela), dados);
     const savedData = {
-      ...data,
+      ...dados,
       id: referenceEntity.id,
     };
     return savedData;
   }
 }
 
-async function pegar(tableName) {
-  const tableRef = collection(db, tableName);
+async function pegar(nomeTabela) {
+  const tableRef = collection(bd, nomeTabela);
 
   const q = query(tableRef);
 
@@ -43,32 +42,37 @@ async function pegar(tableName) {
   const list = [];
 
   querySnapshot.forEach((doc) => {
-    const data = {
-      ...doc.data(),
+    const dados = {
+      ...doc.dados(),
       id: doc.id,
     };
-    list.push(data);
+    list.push(dados);
   });
   return list;
 }
 
-async function pegarPeloId(tableName, id) {
-  const docRef = doc(db, tableName, id);
+async function pegarPeloId(nomeTabela, id) {
+  const docRef = doc(bd, nomeTabela, id);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    return docSnap.data();
+    return docSnap.dados();
   } else {
-    return new Error("Not found!");
+    return new Error("Não encontrado!");
   }
 }
 
-async function remover(tableName, id) {
-  const data = await deleteDoc(doc(db, tableName, id));
+async function remover(nomeTabela, id) {
+  const dados = await deleteDoc(doc(bd, nomeTabela, id));
   return {
-    message: `${id} deleted`,
+    message: `${id} removido!`,
   };
 }
 
 
-module.exports = { adicionarEEditar, pegar, pegarPeloId, remover };
+module.exports = { 
+  adicionarOuEditar,
+  pegar,
+  pegarPeloId,
+  remover
+};
