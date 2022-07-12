@@ -42,11 +42,11 @@ async function pegar(nomeTabela) {
   const list = [];
 
   querySnapshot.forEach((doc) => {
-    const dados = {
-      ...doc.dados(),
+    const data = {
+      ...doc.data(),
       id: doc.id,
     };
-    list.push(dados);
+    list.push(data);
   });
   return list;
 }
@@ -70,7 +70,7 @@ async function remover(nomeTabela, id) {
 }
 
 
-module.exports = { 
+module.exports = {
   adicionarOuEditar,
   pegar,
   pegarPeloId,

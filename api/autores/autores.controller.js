@@ -3,7 +3,7 @@ const router = express.Router();
 const autoresHandler = require('./autores.handler');
 
 
-router.get("/", async (res) => {
+router.get("/", async (req, res) => {
     res.json(await autoresHandler.pesquisarAutores());
 });
 

@@ -21,6 +21,7 @@ async function removerAutor(id) {
     return await crud.remover("autores", id);
 };
 
+
 module.exports = {
     pesquisarAutores,
     pesquisarAutor,

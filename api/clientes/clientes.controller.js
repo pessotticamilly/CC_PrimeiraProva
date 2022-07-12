@@ -3,7 +3,7 @@ const router = express.Router();
 const clientesHandler = require('./clientes.handler');
 
 
-router.get("/", async (res) => {
+router.get("/", async (req, res) => {
     res.json(await clientesHandler.pesquisarClientes());
 });
 

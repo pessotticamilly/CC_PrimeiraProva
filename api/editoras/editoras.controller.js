@@ -3,7 +3,7 @@ const router = express.Router();
 const editorasHandler = require('./editoras.handler');
 
 
-router.get("/", async (res) => {
+router.get("/", async (req, res) => {
     res.json(await editorasHandler.pesquisarEditoras());
 });
 

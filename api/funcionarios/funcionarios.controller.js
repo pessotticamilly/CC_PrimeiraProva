@@ -3,7 +3,7 @@ const router = express.Router();
 const funcionariosHandler = require('./funcionarios.handler');
 
 
-router.get("/", async (res) => {
+router.get("/", async (req, res) => {
     res.json(await funcionariosHandler.pesquisarFuncionarios());
 });
 
