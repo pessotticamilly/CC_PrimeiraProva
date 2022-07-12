@@ -11,7 +11,7 @@ app.listen(8080, () => {
 
 /*
 Express: npm i express --save
-Nodemon: npm i Nodemon
+Nodemon: npm i nodemon
 Firebase: npm i firebase
           npm i firebase-admin
 Jest: npm i jest
