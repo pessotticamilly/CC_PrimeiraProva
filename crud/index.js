@@ -65,7 +65,7 @@ async function pegarPeloId(nomeTabela, id) {
 async function remover(nomeTabela, id) {
   const dados = await deleteDoc(doc(bd, nomeTabela, id));
   return {
-    message: `${id} removido!`,
+    mensagem: `${id} removido!`
   };
 }
 
