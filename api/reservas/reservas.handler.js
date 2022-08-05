@@ -1,5 +1,4 @@
 const crud = require("../../crud/index");
-const autoresLivrosHandler = require('../autoresLivros/autoresLivros.handler')
 
 
 async function pesquisarReservas() {

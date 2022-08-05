@@ -1,4 +1,5 @@
 const crud = require("../../crud/index");
+const autoresLivrosHandler = require("../autoresLivros/autoresLivros.handler");
 
 
 async function pesquisarLivros() {
@@ -10,11 +11,51 @@ async function pesquisarLivro(id) {
 };
 
 async function criarLivro(dados) {
-    return await crud.adicionarOuEditar("livros", false, dados);
+    const infosCriar = {
+        titulo: dados.titulo,
+        quantidadePaginas: dados.quantidadePaginas,
+        reservado: false
+    };
+    const autores = dados.autores;
+    const livro = await crud.adicionarOuEditar("livros", null, infosCriar);
+
+    for(idAutor of autores) {
+        const autorLivro = {
+            idAutor: idAutor,
+            idLivro: livro.id
+        };
+
+        await autoresLivrosHandler.criarAutorLivro(autorLivro);
+    };
+
+    return livro; 
 };
 
 async function editarLivro(dados, id) {
-    return await crud.adicionarOuEditar("livros", id, dados);
+    const infosEditar = {
+        titulo: dados.titulo,
+        quantidadePaginas: dados.quantidadePaginas,
+        reservado: dados.reservado
+    };
+    const autoresEditar = dados.autores;
+    const autoresLivros = await autoresLivrosHandler.pesquisarAutoresLivros();
+
+    for(let autorLivro of autoresLivros) {
+        if(autorLivro.idLivro === id) {
+            await autoresLivrosHandler.removerAutorLivro(autorLivro.id);
+        };
+    };
+
+    for(let idAutorLivro of autoresEditar) {
+        const autorLivroId = {
+            idAutorLivro: idAutorLivro,
+            idAutorLivro: livro.id
+        };
+
+        await autoresLivrosHandler.criarAutorLivro(autorLivroId);
+    };
+
+    return await crud.adicionarOuEditar("livros", id, infosEditar);
 };
 
 async function removerLivro(id) {
