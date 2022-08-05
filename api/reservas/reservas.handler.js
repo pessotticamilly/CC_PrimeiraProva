@@ -1,4 +1,5 @@
 const crud = require("../../crud/index");
+const autoresLivrosHandler = require('../autoresLivros/autoresLivros.handler')
 
 
 async function pesquisarReservas() {
@@ -14,7 +15,7 @@ async function criarReserva(dados) {
 };
 
 async function editarReserva(dados, id) {
-    return await crud.adicionarOuEditar("reservas", id, dados);
+    return await crud.adicionarOuEditar("autores", id, dados);
 };
 
 async function removerReserva(id) {

@@ -10,7 +10,6 @@ const firebaseConfig = {
   appId: "1:548826989135:web:e6cd585dfc8d74bd00e03a",
   measurementId: "G-X4MJ5DWSQR"
 };
-
 const app = initializeApp(firebaseConfig);
 const bd = getFirestore();
 
@@ -21,6 +20,7 @@ async function adicionarOuEditar(nomeTabela, id, dados) {
       ...dados,
       id: id,
     };
+
     return savedData;
   } else {
     const referenceEntity = await addDoc(collection(bd, nomeTabela), dados);
@@ -28,17 +28,15 @@ async function adicionarOuEditar(nomeTabela, id, dados) {
       ...dados,
       id: referenceEntity.id,
     };
+
     return savedData;
   }
 }
 
 async function pegar(nomeTabela) {
   const tableRef = collection(bd, nomeTabela);
-
   const q = query(tableRef);
-
   const querySnapshot = await getDocs(q);
-
   const list = [];
 
   querySnapshot.forEach((doc) => {
@@ -64,6 +62,7 @@ async function pegarPeloId(nomeTabela, id) {
 
 async function remover(nomeTabela, id) {
   const dados = await deleteDoc(doc(bd, nomeTabela, id));
+  
   return {
     mensagem: `${id} removido!`
   };
