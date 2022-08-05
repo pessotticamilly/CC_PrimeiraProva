@@ -37,7 +37,7 @@ async function editarLivro(dados, id) {
         quantidadePaginas: dados.quantidadePaginas,
         reservado: dados.reservado
     };
-    const autoresEditar = dados.autores;
+    const autoresInfosEditar = dados.autores;
     const autoresLivros = await autoresLivrosHandler.pesquisarAutoresLivros();
 
     for(let autorLivro of autoresLivros) {
@@ -46,10 +46,10 @@ async function editarLivro(dados, id) {
         };
     };
 
-    for(let idAutorLivro of autoresEditar) {
+    for(let idAutorLivro of autoresInfosEditar) {
         const autorLivroId = {
             idAutorLivro: idAutorLivro,
-            idAutorLivro: livro.id
+            idLivro: livro.id
         };
 
         await autoresLivrosHandler.criarAutorLivro(autorLivroId);
