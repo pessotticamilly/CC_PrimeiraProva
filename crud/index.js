@@ -1,6 +1,5 @@
 const { initializeApp } = require("firebase/app");
 const { getFirestore, collection, doc, setDoc, addDoc, query, where, getDocs, getDoc, deleteDoc } = require("firebase/firestore/lite");
-
 const firebaseConfig = {
   apiKey: "AIzaSyAZ232DfY7bR1bz9gU7h0XFD9A9du8F7jM",
   authDomain: "atividade-biblioteca.firebaseapp.com",
@@ -62,7 +61,7 @@ async function pegarPeloId(nomeTabela, id) {
 
 async function remover(nomeTabela, id) {
   const dados = await deleteDoc(doc(bd, nomeTabela, id));
-  
+
   return {
     mensagem: `${id} removido!`
   };

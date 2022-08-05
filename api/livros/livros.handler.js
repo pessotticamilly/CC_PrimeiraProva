@@ -19,7 +19,7 @@ async function criarLivro(dados) {
     const autores = dados.autores;
     const livro = await crud.adicionarOuEditar("livros", null, infosCriar);
 
-    for(idAutor of autores) {
+    for (idAutor of autores) {
         const autorLivro = {
             idAutor: idAutor,
             idLivro: livro.id
@@ -28,7 +28,7 @@ async function criarLivro(dados) {
         await autoresLivrosHandler.criarAutorLivro(autorLivro);
     };
 
-    return livro; 
+    return livro;
 };
 
 async function editarLivro(dados, id) {
@@ -40,13 +40,13 @@ async function editarLivro(dados, id) {
     const autoresInfosEditar = dados.autores;
     const autoresLivros = await autoresLivrosHandler.pesquisarAutoresLivros();
 
-    for(let autorLivro of autoresLivros) {
-        if(autorLivro.idLivro === id) {
+    for (let autorLivro of autoresLivros) {
+        if (autorLivro.idLivro === id) {
             await autoresLivrosHandler.removerAutorLivro(autorLivro.id);
         };
     };
 
-    for(let idAutorLivro of autoresInfosEditar) {
+    for (let idAutorLivro of autoresInfosEditar) {
         const autorLivroId = {
             idAutorLivro: idAutorLivro,
             idLivro: livro.id
