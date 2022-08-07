@@ -59,7 +59,7 @@ async function editarLivro(dados, id) {
 };
 
 async function removerLivro(id) {
-    return await crud.remover("autores", id);
+    return await crud.remover("livros", id);
 };
 
 

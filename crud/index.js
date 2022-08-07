@@ -60,6 +60,8 @@ async function pegarPeloId(nomeTabela, id) {
 }
 
 async function remover(nomeTabela, id) {
+  console.log(nomeTabela, id);
+
   const dados = await deleteDoc(doc(bd, nomeTabela, id));
 
   return {
