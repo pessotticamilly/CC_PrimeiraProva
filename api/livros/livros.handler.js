@@ -37,6 +37,7 @@ async function editarLivro(dados, id) {
         quantidadePaginas: dados.quantidadePaginas,
         reservado: dados.reservado
     };
+
     const autoresInfosEditar = dados.autores;
     const autoresLivros = await autoresLivrosHandler.pesquisarAutoresLivros();
 
@@ -49,7 +50,7 @@ async function editarLivro(dados, id) {
     for (let idAutorLivro of autoresInfosEditar) {
         const autorLivroId = {
             idAutorLivro: idAutorLivro,
-            idLivro: livro.id
+            idLivro: id
         };
 
         await autoresLivrosHandler.criarAutorLivro(autorLivroId);
@@ -57,6 +58,8 @@ async function editarLivro(dados, id) {
 
     return await crud.adicionarOuEditar("livros", id, infosEditar);
 };
+
+
 
 async function removerLivro(id) {
     return await crud.remover("livros", id);

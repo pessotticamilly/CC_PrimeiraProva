@@ -15,22 +15,20 @@ async function pesquisarReserva(id) {
 async function criarReserva(dados) {
     const reservas = await pesquisarReservas();
 
-    for (let idCLienteReserva of reservas) {
-        if (idCliente === idCLienteReserva) {
-            alert("Esse cliente já possui uma reserva em andamento!");
-            return;
+    for (let reserva of reservas) {
+        if (dados.idCliente === reserva.idCliente) {
+            return {erro: "Esse cliente já possui uma reserva em andamento!"};
         };
     };
 
     const livros = await livrosHandler.pesquisarLivros();
-    const listaLivros = dados.listaLivros;
+    const listaLivrosAReservar = dados.listaLivros;
 
     for (let livro of livros) {
-        for (let idLivro of listaLivros) {
+        for (let idLivro of listaLivrosAReservar) {
             if (livro.id === idLivro) {
                 if (livro.reservado == true) {
-                    alert("Esse livro não está disponível no momento!");
-                    return;
+                    return {erro: "Esse livro não está disponível no momento!"};
                 };
 
                 const todosAutores = await autoresLivrosHandler.pesquisarAutoresLivros();
@@ -43,20 +41,20 @@ async function criarReserva(dados) {
                 };
 
                 const livroNovo = {
-                    titulo: titulo,
-                    quantidadePaginas: quantidadePaginas,
+                    titulo: livro.titulo,
+                    quantidadePaginas: livro.quantidadePaginas,
                     reservado: true,
                     autores: autorLivro
                 };
 
-                await livrosHandler.editarLivro(idLivro, livroNovo);
+                await livrosHandler.editarLivro(livroNovo, idLivro);
             };
         };
     };
 
-    const reserva = await crud.adicionarOuEditar("reservas", null, { idCliente: idCliente });
+    const reserva = await crud.adicionarOuEditar("reservas", null, { idCliente: dados.idCliente });
 
-    for (let idLivro of listaLivros) {
+    for (let idLivro of listaLivrosAReservar) {
         const livroReservado = {
             idLivro: idLivro,
             idReserva: reserva.id
