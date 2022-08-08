@@ -59,8 +59,6 @@ async function editarLivro(dados, id) {
     return await crud.adicionarOuEditar("livros", id, infosEditar);
 };
 
-
-
 async function removerLivro(id) {
     return await crud.remover("livros", id);
 };
